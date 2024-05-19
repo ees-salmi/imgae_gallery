@@ -52,7 +52,7 @@ def role_list_create(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
-@api_view([IsAdminUser])
+#@api_view([IsAdminUser])
 def custom_user_list_create(request):
     if request.method == 'GET':
         users = CustomUser.objects.all()
@@ -67,7 +67,7 @@ def custom_user_list_create(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@api_view([IsAdminUser])
+#@api_view([IsAdminUser])
 def custom_user_retrieve_update_destroy(request, pk):
     try:
         user = CustomUser.objects.get(pk=pk)
@@ -125,7 +125,7 @@ def image_detail(request, pk):
 
     elif request.method == 'DELETE':
         image.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({'Image deleted successfuly'},status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def images_not_approved(request):
